@@ -1,0 +1,6 @@
+recfun recurse {int->int->(int->int)->int->int} x y op iv ->
+    if y = 0
+    then iv
+    else (op x (recurse x (y - 1) op iv))
+    end
+end

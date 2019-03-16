@@ -1,0 +1,6 @@
+
+(
+  fun {int -> (int -> int) -> int} AboutPi Square -> 4 * AboutPi * (Square 6371) end
+  3
+  fun {int -> int} x -> x * x end
+)

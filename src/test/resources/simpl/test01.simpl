@@ -1,0 +1,4 @@
+let {int} AboutPi = 3
+    {int -> int} Square = fun {int->int} x -> x * x end
+in {int} 4 * AboutPi * (Square 6731)
+end

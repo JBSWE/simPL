@@ -1,0 +1,1 @@
+recfun power {int -> int -> int} x y -> 1 end
