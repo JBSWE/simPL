@@ -31,10 +31,10 @@ class FreeVariablesTest  extends FlatSpec {
   }
 
   "5) an expression with a single operator and two distinct variable" should
-     "have those 2 variables as free" in {
+    "have those 2 variables as free" in {
     assert(
       fv(Bin(Add, Var("x"), Var("y"))) ==
-      Set(Var("x"), Var("y"))
+        Set(Var("x"), Var("y"))
     )
   }
 
@@ -211,7 +211,7 @@ class FreeVariablesTest  extends FlatSpec {
           TypeInt,
           Bin(Add, Var("x"), Bin(Sub, Var("y"), Var("w")))
         )
-      ) == Set(Var("y"), Var("z"))
+      ) == Set(Var("y"), Var("z"), Var("x"))
     )
   }
 
@@ -226,7 +226,7 @@ class FreeVariablesTest  extends FlatSpec {
           TypeInt,
           Cond(Bin(Eq,Var("y"),Num(0)),Num(1),Bin(Mul,Var("x"),Appln(Var("mypower"),List(Var("x"), Appln(Var("y"),List(Ury(Minus,Num(1))))))))
         )
-      ) == Set(Var("y"), Var("mypower"), Var("z"))
+      ) == Set(Var("y"), Var("mypower"), Var("z"), Var("x"))
     )
   }
 

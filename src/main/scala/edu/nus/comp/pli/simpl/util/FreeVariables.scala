@@ -20,13 +20,14 @@ object FreeVariables {
         fv(body) diff formalArgs.toSet
 
       case RecFunc(typ, name, formalArgs, body) =>
-        fv(body) diff (formalArgs.toSet + name)
+        fv(body) diff (formalArgs.toSet union Set(name))
 
       case Appln(func, actualArgs) =>
-        fv(func) union actualArgs.toSet.flatMap(e => fv(e))
+        fv(func) union actualArgs.toSet.flatMap(fv)
 
       case Let(defs, _, body) =>
-        fv(body) diff defs.map(x => x._2).toSet union (defs.flatMap(x => fv(x._3)).toSet diff defs.map(x => x._2).toSet)
+        fv(body) diff defs.toSet.map((d:(Type, Var, Expression)) => d._2) union
+          defs.toSet.flatMap((d:(Type, Var, Expression)) => fv(d._3))
     }
   }
 }

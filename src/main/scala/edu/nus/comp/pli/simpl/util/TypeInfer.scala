@@ -88,7 +88,12 @@ object TypeInfer {
            * condition must be bool type
            * consequent,alternative must be of the same inferred type
            */
-          // add you code here
+
+//          condition match {
+//            case TypeBool => at2
+//
+//
+//          }
           None
 
 

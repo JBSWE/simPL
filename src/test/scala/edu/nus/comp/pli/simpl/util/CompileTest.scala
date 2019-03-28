@@ -54,11 +54,15 @@ class CompileTest extends FlatSpec{
         case None =>
           print ("type inference error")
           false
-        case Some (t) => compile(parse(source)) ==List(LDFR(Vector(),("recurse",0),4,"labal_0"), DONE, LABEL("labal_0"), LD(("y",1)), LDCI(0), EQ, JOF("labal_1"), LD(("iv",3)), GOTO("labal_2"), LABEL("labal_1"), LD(("iv",3)), LD(("op",4)), LD(("y",1)), LDCI(1), MINUS, LD(("x",0)), LD(("recurse",2)), CALL(4), LD(("x",0)), LD(("op",4)), CALL(2), LABEL("labal_2"), RTN)
-
+        case Some (t) => compile(parse(source)) ==
+          List(LDFR(List(),("recurse",0),4,"labal_0"), DONE, LABEL("labal_0"), LD(("y",2)), LDCI(0), EQ, JOF("labal_1"), LD(("iv",4)), GOTO("labal_2"), LABEL("labal_1"), LD(("iv",4)), LD(("op",3)), LD(("y",2)), LDCI(1), MINUS, LD(("x",1)), LD(("recurse",0)), CALL(4), LD(("x",1)), LD(("op",3)), CALL(2), LABEL("labal_2"), RTN)
       }
     )
   }
+
+
+
+
   "test05.simpl" should "has no free variable" in {
     val source = Source.fromURL(getClass.getResource("/simpl/test05.simpl")).mkString
     assert(
@@ -113,11 +117,12 @@ class CompileTest extends FlatSpec{
         case None =>
           print ("type inference error")
           false
-        case Some (t) => compile(parse(source)) ==List(LDFR(Vector(),("recurse",0),4,"labal_2"), LDF(Vector(),1,"labal_0"), CALL(1), DONE, LABEL("labal_0"), LDCI(1), LDF(Vector(),2,"labal_1"), LDCI(3), LDCI(2), LD(("recurse",0)), CALL(4), RTN, LABEL("labal_1"), LD(("x",0)), LD(("z",1)), TIMES, RTN, LABEL("labal_2"), LD(("y",2)), LDCI(0), EQ, JOF("labal_3"), LD(("initvalue",1)), GOTO("labal_4"), LABEL("labal_3"), LD(("initvalue",1)), LD(("operation",4)), LD(("y",2)), LDCI(1), MINUS, LD(("x",0)), LD(("recurse",3)), CALL(4), LD(("x",0)), LD(("operation",4)), CALL(2), LABEL("labal_4"), RTN)
+        case Some (t) => compile(parse(source)) ==List(LDFR(List(),("recurse",0),4,"labal_2"), LDF(Vector(),1,"labal_0"), CALL(1), DONE, LABEL("labal_0"), LDCI(1), LDF(Vector(),2,"labal_1"), LDCI(3), LDCI(2), LD(("recurse",0)), CALL(4), RTN, LABEL("labal_1"), LD(("x",0)), LD(("z",1)), TIMES, RTN, LABEL("labal_2"), LD(("y",2)), LDCI(0), EQ, JOF("labal_3"), LD(("initvalue",4)), GOTO("labal_4"), LABEL("labal_3"), LD(("initvalue",4)), LD(("operation",3)), LD(("y",2)), LDCI(1), MINUS, LD(("x",1)), LD(("recurse",0)), CALL(4), LD(("x",1)), LD(("operation",3)), CALL(2), LABEL("labal_4"), RTN)
 
       }
     )
   }
+
   "test10.simpl" should "has no free variable" in {
     val source = Source.fromURL(getClass.getResource("/simpl/test10.simpl")).mkString
     assert(
@@ -125,7 +130,7 @@ class CompileTest extends FlatSpec{
         case None =>
           print ("type inference error")
           false
-        case Some (t) => compile(parse(source)) ==List(LDFR(Vector(),("recurse",0),4,"labal_2"), LDF(Vector(),1,"labal_0"), CALL(1), DONE, LABEL("labal_0"), LDCI(0), LDF(Vector(),2,"labal_1"), LDCI(3), LDCI(2), LD(("recurse",0)), CALL(4), RTN, LABEL("labal_1"), LD(("x",0)), LD(("z",1)), PLUS, RTN, LABEL("labal_2"), LD(("y",2)), LDCI(0), EQ, JOF("labal_3"), LD(("initvalue",1)), GOTO("labal_4"), LABEL("labal_3"), LD(("initvalue",1)), LD(("operation",4)), LD(("y",2)), LDCI(1), MINUS, LD(("x",0)), LD(("recurse",3)), CALL(4), LD(("x",0)), LD(("operation",4)), CALL(2), LABEL("labal_4"), RTN)
+        case Some (t) => compile(parse(source)) ==List(LDFR(List(),("recurse",0),4,"labal_2"), LDF(Vector(),1,"labal_0"), CALL(1), DONE, LABEL("labal_0"), LDCI(0), LDF(Vector(),2,"labal_1"), LDCI(3), LDCI(2), LD(("recurse",0)), CALL(4), RTN, LABEL("labal_1"), LD(("x",0)), LD(("z",1)), PLUS, RTN, LABEL("labal_2"), LD(("y",2)), LDCI(0), EQ, JOF("labal_3"), LD(("initvalue",4)), GOTO("labal_4"), LABEL("labal_3"), LD(("initvalue",4)), LD(("operation",3)), LD(("y",2)), LDCI(1), MINUS, LD(("x",1)), LD(("recurse",0)), CALL(4), LD(("x",1)), LD(("operation",3)), CALL(2), LABEL("labal_4"), RTN)
 
       }
     )
@@ -137,11 +142,13 @@ class CompileTest extends FlatSpec{
         case None =>
           print ("type inference error")
           false
-        case Some (t) => compile(parse(source)) ==List(LDFR(Vector(),("recurse",0),4,"labal_2"), LDF(Vector(),1,"labal_0"), CALL(1), DONE, LABEL("labal_0"), LDCI(128), LDF(Vector(),2,"labal_1"), LDCI(3), LDCI(2), LD(("recurse",0)), CALL(4), RTN, LABEL("labal_1"), LD(("z",1)), LD(("x",0)), DIV, RTN, LABEL("labal_2"), LD(("y",2)), LDCI(0), EQ, JOF("labal_3"), LD(("initvalue",1)), GOTO("labal_4"), LABEL("labal_3"), LD(("initvalue",1)), LD(("operation",4)), LD(("y",2)), LDCI(1), MINUS, LD(("x",0)), LD(("recurse",3)), CALL(4), LD(("x",0)), LD(("operation",4)), CALL(2), LABEL("labal_4"), RTN)
+        case Some (t) => compile(parse(source)) ==List(LDFR(List(),("recurse",0),4,"labal_2"), LDF(Vector(),1,"labal_0"), CALL(1), DONE, LABEL("labal_0"), LDCI(128), LDF(Vector(),2,"labal_1"), LDCI(3), LDCI(2), LD(("recurse",0)), CALL(4), RTN, LABEL("labal_1"), LD(("z",1)), LD(("x",0)), DIV, RTN, LABEL("labal_2"), LD(("y",2)), LDCI(0), EQ, JOF("labal_3"), LD(("initvalue",4)), GOTO("labal_4"), LABEL("labal_3"), LD(("initvalue",4)), LD(("operation",3)), LD(("y",2)), LDCI(1), MINUS, LD(("x",1)), LD(("recurse",0)), CALL(4), LD(("x",1)), LD(("operation",3)), CALL(2), LABEL("labal_4"), RTN)
 
       }
     )
   }
+
+
   "test12.simpl" should "has no free variable" in {
     val source = Source.fromURL(getClass.getResource("/simpl/test12.simpl")).mkString
     assert(
@@ -369,3 +376,6 @@ class CompileTest extends FlatSpec{
     )
   }
 }
+
+
+
